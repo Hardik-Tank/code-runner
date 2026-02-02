@@ -2,32 +2,91 @@ import { httpRouter } from "convex/server";
 import { httpAction } from "./_generated/server";
 import { Webhook } from "svix";
 import { WebhookEvent } from "@clerk/nextjs/server";
+import { api } from "./_generated/api";
 
 const http = httpRouter();
 
 http.route({
   path: "/clerk-webhook",
   method: "POST",
+
   handler: httpAction(async (ctx, request) => {
+
     const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
+
     if (!webhookSecret) {
-        throw new Error("missing CLERK_WEBHOOK_SECRET environment variable")
+      throw new Error("Missing CLERK_WEBHOOK_SECRET");
     }
-    const svix_id = request.headers.get("svix-id")
-     const svix_signature = request.headers.get("svix-signature")
-         const svix_timestamp = request.headers.get("svix-timestamp")
 
-         if(!svix_id || !svix_signature || !svix_timestamp){
-          return new Response("Error occurred --no svix headers",{
-                status:400,
-             })
-         }
-         const payload = await request.json();
-         const body = JSON.stringify(payload);
-         
-         const wh = new Webhook(webhookSecret);
-         let evt:WebhookEvent; 
+    // ✅ Get real headers
+    const svix_id = request.headers.get("svix-id");
+    const svix_signature = request.headers.get("svix-signature");
+    const svix_timestamp = request.headers.get("svix-timestamp");
 
+    if (!svix_id || !svix_signature || !svix_timestamp) {
+      return new Response("Missing svix headers", { status: 400 });
+    }
+
+    const payload = await request.json();
+    const body = JSON.stringify(payload);
+
+    const wh = new Webhook(webhookSecret);
+
+    let evt: WebhookEvent;
+
+    try {
+
+      // ✅ FIXED: real values (no quotes)
+      evt = wh.verify(body, {
+        "svix-id": svix_id,
+        "svix-signature": svix_signature,
+        "svix-timestamp": svix_timestamp,
+      }) as WebhookEvent;
+
+    } catch (err) {
+
+      console.log("Webhook verification failed:", err);
+
+      return new Response("Invalid webhook", { status: 400 });
+    }
+
+    const eventType = evt.type;
+
+    // ✅ When user is created
+    if (eventType === "user.created") {
+
+      const {
+        id,
+        email_addresses,
+        first_name,
+        last_name
+      } = evt.data;
+
+      const email = email_addresses[0]?.email_address || "";
+
+      // ✅ space between name
+      const name = `${first_name || ""} ${last_name || ""}`.trim();
+
+      try {
+
+        await ctx.runMutation(api.users.syncUser, {
+          userId: id,
+          email,
+          name,
+        });
+
+        console.log("User synced:", id);
+
+      } catch (error) {
+
+        console.log("Error creating user:", error);
+
+        return new Response("DB Error", { status: 500 });
+      }
+    }
+
+    return new Response("Webhook processed", { status: 200 });
   }),
 });
+
 export default http;
