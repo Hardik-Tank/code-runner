@@ -1,0 +1,36 @@
+[00:01:47.696] Server  LOG     ○ Compiling middleware ...
+[00:02:04.233] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:02:08.465] Server  LOG     ✓ Ready in 116.7s
+[00:03:25.372] Server  LOG     ○ Compiling / ...
+[00:04:33.135] Browser ERROR   ClerkRuntimeError: Clerk: Failed to load Clerk
+
+(code="failed_to_load_clerk_js_timeout")
+
+
+    at handleTimeout (http://localhost:3000/_next/static/chunks/node_modules_%40clerk_shared_dist_runtime_dcdb9a7b._.js:5348:50)
+[00:04:39.259] Browser ERROR   unhandledRejection: ClerkRuntimeError: Clerk: Failed to load Clerk, failed to load script: https://enabling-albacore-74.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js
+
+(code="failed_to_load_clerk_js")
+
+
+[00:04:57.512] Server  LOG     ✓ Finished filesystem cache database compaction in 18.5s
+[00:04:58.368] Server  LOG     ✓ Finished writing to filesystem cache in 17.1s
+[00:05:56.398] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:06:27.457] Browser WARN    Image with src "/python.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:03.817] Browser LOG     data back from piston: {"compile":null,"run":{"code":0,"output":"this is python code\n","stderr":"","stdout":"this is python code\n"}}
+[00:07:04.200] Browser LOG     %c[CONVEX M(codeExecutions:saveExecution)] [LOG] color:rgb(0, 145, 255) 'identity: ' {
+  tokenIdentifier: 'https://enabling-albacore-74.clerk.accounts.dev|user_38vkV2jc5nVPhvzTSIJztFC3x0o',
+  issuer: 'https://enabling-albacore-74.clerk.accounts.dev',
+  subject: 'user_38vkV2jc5nVPhvzTSIJztFC3x0o',
+  name: 'Hardik Tank',
+  givenName: 'Hardik',
+  familyName: 'Tank',
+  pictureUrl: 'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zOHZrVXhjdXZTa0Rua29UblpRVVlaUUx0Q1kifQ',
+  email: 'hardiktank2003@gmail.com',
+  emailVerified: true,
+  phoneNumberVerified: false,
+  updatedAt: '2026-02-27T04:26:16+00:00'
+}
+[00:20:54.640] Browser LOG     WebSocket closed with code 1006
+[00:20:54.640] Browser LOG     Attempting reconnect in 1345ms
+[00:20:58.646] Browser LOG     WebSocket reconnected at t=906.2s after disconnect due to closed with code 1006
