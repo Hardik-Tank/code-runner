@@ -1,5 +1,7 @@
 {
   "/(root)/page": "app/(root)/page.js",
   "/api/execute/route": "app/api/execute/route.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/profile/page": "app/profile/page.js",
   "/snippets/page": "app/snippets/page.js"
 }

@@ -53,7 +53,7 @@ function SnippetsPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-linear-to-r
              from-blue-500/10 to-purple-500/10 text-sm text-gray-400 mb-6"
           >
             <BookOpen className="w-4 h-4" />
@@ -64,7 +64,7 @@ function SnippetsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-100 to-gray-300 text-transparent bg-clip-text mb-6"
+            className="text-4xl md:text-5xl font-bold bg-linear-to-r from-gray-100 to-gray-300 text-transparent bg-clip-text mb-6"
           >
             Discover & Share Code Snippets
           </motion.h1>
@@ -83,7 +83,7 @@ function SnippetsPage() {
         <div className="relative max-w-5xl mx-auto mb-12 space-y-6">
           {/* Search */}
           <div className="relative">
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl opacity-40 pointer-events-none" />
+            <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500/20 to-purple-500/20 blur-xl opacity-40 pointer-events-none" />
             <div className="relative flex items-center rounded-2xl bg-white/5 ring-1 ring-white/10 focus-within:ring-2 focus-within:ring-blue-500/40 transition">
               <Search className="ml-4 w-5 h-5 text-gray-400" />
               <input
@@ -206,7 +206,7 @@ function SnippetsPage() {
           >
             <div className="text-center">
               <div
-                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br 
+                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-br
                 from-blue-500/10 to-purple-500/10 ring-1 ring-white/10 mb-6"
               >
                 <Code className="w-8 h-8 text-gray-400" />

@@ -1,0 +1,11 @@
+{
+  "/(root)/page": "/",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/execute/route": "/api/execute",
+  "/favicon.ico/route": "/favicon.ico",
+  "/pricing/page": "/pricing",
+  "/profile/page": "/profile",
+  "/snippets/[id]/page": "/snippets/[id]",
+  "/snippets/page": "/snippets"
+}
